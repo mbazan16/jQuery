@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Constructor $ </title>
+    <script>
+        $h2 = $('h2');
+        //Ejecución del evento hover sobre el alias $
+        $('a.alias').hover(function (event) {
+            $h2.css('color', 'red');
+        }, function (event) {
+            $h2.css('color', 'blue');
+        });
+        //Ejecución del evento hover sobre jQuery
+        jQuery('a.jquery').hover(function (event) {
+            $h2.css('color', 'red');
+        }, function (event) {
+            $h2.css('color', 'pink');
+        })
+    </script>
+</head>
+<body>    
+    <h2>prueba</h2>
+    <a class="button alias" href="#">Acción con $</a>
+    <a class="button jquery" href="#">Acción con jQuery</a>
+</body>
+
+</html>
