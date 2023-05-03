@@ -10,46 +10,67 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <title>Conceptos Básicos de Eventos</title>
+  <title>Control de Eventos</title>
   <script>
 
     $(function () {
-      //Ejemplo de mal funcionamiento, no funciona el alert porque el botón se añade después
-      $("button.alerta").on("click", function () {
-        alert("El botón se ha pulsado");
+      // Enlace de eventos simple
+      $("p").on("click", function () {
+        console.log("<p> fue clicked");
+      });
+      // Muchos eventos con un único controlador
+      $("div").on("mouseenter mouseleave", function () {
+        console.log("ratón paso sobre un div o dejo un div");
       });
 
-      $("<button class='alerta'>Alerta</button>").appendTo(document.body);
-      //Ejemplo de acción cuando una caja de texto cambia su valor
-      $("input").on(
-        "change",
-        { foo: "bar" },
-        function (eventObject) {
-          console.log("La caja de texto ha cambiado ", eventObject.data.foo);
+      //Muchos eventos y controladores
+      $("div").on({
+        mouseenter: function () {
+          console.log("raton entro a un div");
+        },
+        mouseleave: function () {
+          console.log("ratón dejo un div");
+        },
+        click: function () {
+          console.log("clicked sobre un div");
         }
-      );
-
-      //Evento con su propio controlador
-      $("p").on({
-        "click": function () { console.log("Se ha pulsado el parráfo") },
-        "mouseover": function () { console.log("El ratón ha pasado por encima"); }
+      });
+      //objeto evento
+      $("div").on("click", function (event) {
+        console.log("objeto evento:");
+        console.dir(event);
+      });
+      //pasar datos al controlador evento
+      $("p").on("click", {
+        foo: "bar"
+      }, function (event) {
+        console.log("datos de evento: " + event.data.foo + " (debería ser'bar')");
+      });
+      //Enlazar eventos a elementos que aun no existen
+      $("ul").on("click", "li", function () {
+        console.log("Algo en la <ul> ha sido seleccionado, hemos detectado que era en el elemento <li>");
       });
 
-      //Ejemplo de desactivación de eventos
+      // Conectar eventos para que se ejecuten solo una vez
+      $("p").one("click", function () {
+        console.log("Acabas de seleccionar por primera vez!");
+        $(this).click(function () {
+          console.log("Ya me has seleccionado antes!");
+        });
+      });
+      //Desconexion de eventos
       $("p").off("click");
-      var foo = function () { console.log("foo"); };
-      var bar = function () { console.log("bar"); };
+      var foo = function () {
+        console.log("foo");
+      };
+
+      var bar = function () {
+        console.log("bar");
+      };
+
       $("p").on("click", foo).on("click", bar);
+
       $("p").off("click", bar);
-      //Ejemplo de ejecución única
-      $("p").one("click", firstClick);
-      function firstClick() {
-        console.log("You just clicked this for the first time!");
-        $(this).click(function () { console.log("You have clicked this before!"); });
-      }
-
-
-
     });
 
   </script>
@@ -81,12 +102,18 @@
       </ul>
     </div>
   </nav>
-  Esta página contiene ejemplos sobre los conceptos básicos de eventos. Ver consola también F12
-  <br>
-  <input type="text" />
-  <br>
-  <p>Parrafo de ejemplo</p>
-  <br>
+  Esta página contiene ejemplos sobre los controles de eventos. Ver consola también F12
+  <div id="menu">
+    <ul>
+      <li>
+        Item lista 1
+      </li>
+      <li>
+        Item lista 1
+      </li>
+    </ul>
+  </div>
+  <p>Parrafo ejemplo</p>
   <!-- Optional JavaScript -->
   <!--  Popper.js, then Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"

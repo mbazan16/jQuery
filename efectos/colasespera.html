@@ -10,46 +10,59 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <title>Conceptos Básicos de Eventos</title>
+  <title>Colas de espera</title>
   <script>
 
     $(function () {
-      //Ejemplo de mal funcionamiento, no funciona el alert porque el botón se añade después
-      $("button.alerta").on("click", function () {
-        alert("El botón se ha pulsado");
-      });
+      $( ".box" )
+   .animate( {
+       height: 20
+   }, "slow", function() {
+       $( "#title" ).html( "We're in the callback, baby!" );
+   } );
+   //Colas como devoluciones de llamadas
+   $( ".box2" )
+   .animate( {
+       height: 20
+   }, "slow")
+   .queue( function() {
+       $( "#title" ).html( "We're in the animation, baby!" );
+       // This tells jQuery to continue to the next item in the queue
+       $( this ).dequeue();
+   } );
+//Colas personalizadas
+   $( ".box3" )
+   .queue( "steps", function( next ) {
+       console.log( "Step 1" );
+       next();
+   } )
+   .queue( "steps", function( next ) {
+       console.log( "Step 2" );
+       next();
+   } )
+   .dequeue( "steps" );
+//Eliminación de la cola
+   $( ".box4" )
+   .queue( "steps", function( next ) {
+       console.log( "Will never log because we clear the queue" );
+       next();
+   } )
+   .clearQueue( "steps" )
+   .dequeue( "steps" );
 
-      $("<button class='alerta'>Alerta</button>").appendTo(document.body);
-      //Ejemplo de acción cuando una caja de texto cambia su valor
-      $("input").on(
-        "change",
-        { foo: "bar" },
-        function (eventObject) {
-          console.log("La caja de texto ha cambiado ", eventObject.data.foo);
-        }
-      );
-
-      //Evento con su propio controlador
-      $("p").on({
-        "click": function () { console.log("Se ha pulsado el parráfo") },
-        "mouseover": function () { console.log("El ratón ha pasado por encima"); }
-      });
-
-      //Ejemplo de desactivación de eventos
-      $("p").off("click");
-      var foo = function () { console.log("foo"); };
-      var bar = function () { console.log("bar"); };
-      $("p").on("click", foo).on("click", bar);
-      $("p").off("click", bar);
-      //Ejemplo de ejecución única
-      $("p").one("click", firstClick);
-      function firstClick() {
-        console.log("You just clicked this for the first time!");
-        $(this).click(function () { console.log("You have clicked this before!"); });
-      }
-
-
-
+   //Sustitución de la cola
+   $( ".box" )
+   .queue( "steps", function( next ) {
+       console.log( "I will never fire as we totally replace the queue" );
+       next();
+   } )
+   .queue( "steps", [
+       function( next ) {
+           console.log( "I fired!" );
+           next();
+       }
+   ] )
+   .dequeue( "steps" );
     });
 
   </script>
@@ -72,21 +85,27 @@
         <li class="nav-item ">
           <a class="nav-link" href="../core/index.html">Core </a>
         </li>
-        <li class="nav-item" active>
-          <a class="nav-link" href="../eventos/index.html">Eventos<span class="sr-only">(current)</span></a>
+        <li class="nav-item" >
+          <a class="nav-link" href="../eventos/index.html">Eventos</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../efectos/index.html">Efectos</a>
+        <li class="nav-item" active>
+          <a class="nav-link" href="../efectos/index.html">Efectos<span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
   </nav>
-  Esta página contiene ejemplos sobre los conceptos básicos de eventos. Ver consola también F12
-  <br>
-  <input type="text" />
-  <br>
-  <p>Parrafo de ejemplo</p>
-  <br>
+  Esta página contiene ejemplos sobre los efectos. 
+  <div id="menu">
+    <ul>
+      <li>
+        Item lista 1
+      </li>
+      <li>
+        Item lista 1
+      </li>
+    </ul>
+
+  </div>
   <!-- Optional JavaScript -->
   <!--  Popper.js, then Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
