@@ -14,53 +14,53 @@
   <script>
 
     $(function () {
-      $( "#myForm" ).serializeArray();
+      $("#myForm").serializeArray();
 
-      $( "#form" ).submit(function( event ) {
- 
- // If .required's value's length is zero
- if ( $( ".required" ).val().length === 0 ) {
+      $("#form").submit(function (event) {
 
-     // Usually show some kind of error message here
+        // If .required's value's length is zero
+        if ($(".required").val().length === 0) {
 
-     // Prevent the form from submitting
-     event.preventDefault();
- } else {
+          // Usually show some kind of error message here
 
-     // Run $.ajax() here
- }
-});
-$( "#form" ).submit(function( event ) {
-    var inputtedPhoneNumber = $( "#phone" ).val();
- 
-    // Match only numbers
-    var phoneNumberRegex = /^\d*$/;
- 
-    // If the phone number doesn't match the regex
-    if ( !phoneNumberRegex.test( inputtedPhoneNumber ) ) {
- 
-        // Usually show some kind of error message here
- 
-        // Prevent the form from submitting
-        event.preventDefault();
-    } else {
- 
-        // Run $.ajax() here
-    }
-});
-//Prefiltrado
-$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
-    if ( options.crossDomain ) {
-        options.url = "http://mydomain.net/proxy/" + encodeURIComponent( options.url );
-        options.crossDomain = false;
-    }
-});
-// Using the optional dataTypes argument
-$.ajaxPrefilter( "json script", function( options, originalOptions, jqXHR ) {
- 
- // Do all of the prefiltering here, but only for
- // requests that indicate a dataType of "JSON" or "script"
-});
+          // Prevent the form from submitting
+          event.preventDefault();
+        } else {
+
+          // Run $.ajax() here
+        }
+      });
+      $("#form").submit(function (event) {
+        var inputtedPhoneNumber = $("#phone").val();
+
+        // Match only numbers
+        var phoneNumberRegex = /^\d*$/;
+
+        // If the phone number doesn't match the regex
+        if (!phoneNumberRegex.test(inputtedPhoneNumber)) {
+
+          // Usually show some kind of error message here
+
+          // Prevent the form from submitting
+          event.preventDefault();
+        } else {
+
+          // Run $.ajax() here
+        }
+      });
+      //Prefiltrado
+      $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+        if (options.crossDomain) {
+          options.url = "http://mydomain.net/proxy/" + encodeURIComponent(options.url);
+          options.crossDomain = false;
+        }
+      });
+      // Using the optional dataTypes argument
+      $.ajaxPrefilter("json script", function (options, originalOptions, jqXHR) {
+
+        // Do all of the prefiltering here, but only for
+        // requests that indicate a dataType of "JSON" or "script"
+      });
 
     });
   </script>
@@ -91,6 +91,15 @@ $.ajaxPrefilter( "json script", function( options, originalOptions, jqXHR ) {
         </li>
         <li class="nav-item" active>
           <a class="nav-link" href="../ajax/index.html">AJAX<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../plugins/index.html">Plugins</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../rendimiento/index.html">Rendimiento</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../organizacion/index.html">Organización del código</a>
         </li>
       </ul>
     </div>

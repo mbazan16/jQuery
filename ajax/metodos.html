@@ -50,35 +50,35 @@
           alert("The request is complete!");
         });
 
-        //Métodos de convenniencia
-        // Using jQuery's Ajax convenience methods
- 
-// Get plain text or HTML
-$.get( "/users.php", {
-    userId: 1234
-}, function( resp ) {
-    console.log( resp ); // server response
-});
- 
-// Add a script to the page, then run a function defined in it
-$.getScript( "/static/js/myScript.js", function() {
-    functionFromMyScript();
-});
- 
-// Get JSON-formatted data from the server
-$.getJSON( "/details.php", function( resp ) {
- 
-    // Log each key in the response data
-    $.each( resp, function( key, value ) {
-        console.log( key + " : " + value );
-    });
-});
-// Using .load() to populate an element
-$( "#newContent" ).load( "/foo.html" );
-// Using .load() to populate an element based on a selector
-$( "#newContent" ).load( "/foo.html #myDiv h1:first", function( html ) {
-    alert( "Content updated!" );
-});
+      //Métodos de convenniencia
+      // Using jQuery's Ajax convenience methods
+
+      // Get plain text or HTML
+      $.get("/users.php", {
+        userId: 1234
+      }, function (resp) {
+        console.log(resp); // server response
+      });
+
+      // Add a script to the page, then run a function defined in it
+      $.getScript("/static/js/myScript.js", function () {
+        functionFromMyScript();
+      });
+
+      // Get JSON-formatted data from the server
+      $.getJSON("/details.php", function (resp) {
+
+        // Log each key in the response data
+        $.each(resp, function (key, value) {
+          console.log(key + " : " + value);
+        });
+      });
+      // Using .load() to populate an element
+      $("#newContent").load("/foo.html");
+      // Using .load() to populate an element based on a selector
+      $("#newContent").load("/foo.html #myDiv h1:first", function (html) {
+        alert("Content updated!");
+      });
     });
   </script>
 </head>
@@ -108,6 +108,15 @@ $( "#newContent" ).load( "/foo.html #myDiv h1:first", function( html ) {
         </li>
         <li class="nav-item" active>
           <a class="nav-link" href="../ajax/index.html">AJAX<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../plugins/index.html">Plugins</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../rendimiento/index.html">Rendimiento</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../organizacion/index.html">Organización del código</a>
         </li>
       </ul>
     </div>

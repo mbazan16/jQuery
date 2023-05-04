@@ -14,120 +14,120 @@
   <script>
 
     $(function () {
-      $.fn.greenify = function() {
-    this.css( "color", "green" );
-};
- 
-$( "a" ).greenify(); // Makes all the links green.
+      $.fn.greenify = function () {
+        this.css("color", "green");
+      };
 
-$.fn.greenify = function() {
-    this.css( "color", "green" );
-    return this;
-}
- 
-$( "a" ).greenify().addClass( "greenified" );
+      $("a").greenify(); // Makes all the links green.
+
+      $.fn.greenify = function () {
+        this.css("color", "green");
+        return this;
+      }
+
+      $("a").greenify().addClass("greenified");
 
 
     });
-    (function ( $ ) {
- 
- $.fn.greenify = function() {
-     this.css( "color", "green" );
-     return this;
- };
+    (function ($) {
 
-}( jQuery ));
-(function ( $ ) {
- 
- var shade = "#556b2f";
+      $.fn.greenify = function () {
+        this.css("color", "green");
+        return this;
+      };
 
- $.fn.greenify = function() {
-     this.css( "color", shade );
-     return this;
- };
+    }(jQuery));
+    (function ($) {
 
-}( jQuery ));
+      var shade = "#556b2f";
 
-//Codigo incorrecto
-(function( $ ) {
- 
- $.fn.openPopup = function() {
-     // Open popup code.
- };
+      $.fn.greenify = function () {
+        this.css("color", shade);
+        return this;
+      };
 
- $.fn.closePopup = function() {
-     // Close popup code.
- };
+    }(jQuery));
 
-}( jQuery ));
-// Codigo correcto
-(function( $ ) {
- 
- $.fn.popup = function( action ) {
+    //Codigo incorrecto
+    (function ($) {
 
-     if ( action === "open") {
-         // Open popup code.
-     }
+      $.fn.openPopup = function () {
+        // Open popup code.
+      };
 
-     if ( action === "close" ) {
-         // Close popup code.
-     }
+      $.fn.closePopup = function () {
+        // Close popup code.
+      };
 
- };
+    }(jQuery));
+    // Codigo correcto
+    (function ($) {
 
-}( jQuery ));
-//each
-(function( $ ) {
- 
-  $.fn.myNewPlugin = function() {
- 
- return this.each(function() {
-     // Do something to each element here.
- });
+      $.fn.popup = function (action) {
+
+        if (action === "open") {
+          // Open popup code.
+        }
+
+        if (action === "close") {
+          // Close popup code.
+        }
+
+      };
+
+    }(jQuery));
+    //each
+    (function ($) {
+
+      $.fn.myNewPlugin = function () {
+
+        return this.each(function () {
+          // Do something to each element here.
+        });
 
 
- };
+      };
 
-}( jQuery ));
-//Aceptacion de opciones
-(function ( $ ) {
- 
- $.fn.greenify = function( options ) {
+    }(jQuery));
+    //Aceptacion de opciones
+    (function ($) {
 
-     // This is the easiest way to have default options.
-     var settings = $.extend({
-         // These are the defaults.
-         color: "#556b2f",
-         backgroundColor: "white"
-     }, options );
+      $.fn.greenify = function (options) {
 
-     // Greenify the collection based on the settings variable.
-     return this.css({
-         color: settings.color,
-         backgroundColor: settings.backgroundColor
-     });
+        // This is the easiest way to have default options.
+        var settings = $.extend({
+          // These are the defaults.
+          color: "#556b2f",
+          backgroundColor: "white"
+        }, options);
 
- };
+        // Greenify the collection based on the settings variable.
+        return this.css({
+          color: settings.color,
+          backgroundColor: settings.backgroundColor
+        });
 
-}( jQuery ));
-//Todo junto
-(function( $ ) {
- 
- $.fn.showLinkLocation = function() {
+      };
 
-     this.filter( "a" ).each(function() {
-         var link = $( this );
-         link.append( " (" + link.attr( "href" ) + ")" );
-     });
+    }(jQuery));
+    //Todo junto
+    (function ($) {
 
-     return this;
+      $.fn.showLinkLocation = function () {
 
- };
+        this.filter("a").each(function () {
+          var link = $(this);
+          link.append(" (" + link.attr("href") + ")");
+        });
 
-}( jQuery ));
+        return this;
 
-// Usage example:
-$( "a" ).showLinkLocation();
+      };
+
+    }(jQuery));
+
+    // Usage example:
+    $("a").showLinkLocation();
   </script>
 </head>
 
@@ -157,18 +157,21 @@ $( "a" ).showLinkLocation();
         <li class="nav-item">
           <a class="nav-link" href="../ajax/index.html">AJAX</a>
         </li>
-        <li class="nav-item" >
+        <li class="nav-item">
           <a class="nav-link" href="../plugins/index.html">Plugins</a>
         </li>
         <li class="nav-item" active>
           <a class="nav-link" href="../rendimiento/index.html">Rendimiento<span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../organizacion/index.html">Organización del código</a>
+        </li>
       </ul>
     </div>
   </nav>
   Ejemplos de creación de plugin.
- <!-- Before plugin is called: -->
-<a href="page.html">Foo</a>
+  <!-- Before plugin is called: -->
+  <a href="page.html">Foo</a>
   <!-- Optional JavaScript -->
   <!--  Popper.js, then Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
