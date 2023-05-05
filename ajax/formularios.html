@@ -14,52 +14,44 @@
   <script>
 
     $(function () {
-      $("#myForm").serializeArray();
+       console.log($("#miform").serializeArray())
 
-      $("#form").submit(function (event) {
-
-        // If .required's value's length is zero
+      $("#miform").submit(function (event) {
+        
+        //Si un valor requerido tiene valor cero
         if ($(".required").val().length === 0) {
+          alert("El valor requerido no esta cumplimentado")
+          //no se envia el formulario
+          event.preventDefault();
+        } else {
+          //Si esta todo bien se enviaría el formulario mediante una función ajax
+        }
+      });
+      $("#miform").submit(function (event) {
+        var telefono = $("#telefono").val();
 
-          // Usually show some kind of error message here
+        // Patron para que solo existan numeros
+        var patronTelefono = /^\d*$/;
 
-          // Prevent the form from submitting
+        // Si el telefono no esta bien cumplimentado
+        if (!patronTelefono.test(telefono)) {
+
+          alert("El telefono no es válido");
+
+          // el fomulario no se envia
           event.preventDefault();
         } else {
 
-          // Run $.ajax() here
+          //Si esta todo bien se enviaría el formulario mediante una función ajax
         }
       });
-      $("#form").submit(function (event) {
-        var inputtedPhoneNumber = $("#phone").val();
+      
 
-        // Match only numbers
-        var phoneNumberRegex = /^\d*$/;
-
-        // If the phone number doesn't match the regex
-        if (!phoneNumberRegex.test(inputtedPhoneNumber)) {
-
-          // Usually show some kind of error message here
-
-          // Prevent the form from submitting
-          event.preventDefault();
-        } else {
-
-          // Run $.ajax() here
-        }
-      });
-      //Prefiltrado
       $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
         if (options.crossDomain) {
           options.url = "http://mydomain.net/proxy/" + encodeURIComponent(options.url);
           options.crossDomain = false;
         }
-      });
-      // Using the optional dataTypes argument
-      $.ajaxPrefilter("json script", function (options, originalOptions, jqXHR) {
-
-        // Do all of the prefiltering here, but only for
-        // requests that indicate a dataType of "JSON" or "script"
       });
 
     });
@@ -105,7 +97,11 @@
     </div>
   </nav>
   Ejemplos de conceptos clave de AJAX. Ver consola F12
-  <a>Enlace ejemplo</a>
+  <form id="miform">
+    <label for="telefono">Telefono</label>
+    <input id="telefono" type="text" class="required" />
+    <button type="submint">Enviar</button>
+  </form>
   <!-- Optional JavaScript -->
   <!--  Popper.js, then Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"

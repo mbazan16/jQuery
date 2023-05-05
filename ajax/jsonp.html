@@ -16,7 +16,7 @@
     $(function () {
       // Using YQL and JSONP
       $.ajax({
-        url: "http://query.yahooapis.com/v1/public/yql",
+        url: "../datos/hello.json",
 
         // The name of the callback parameter, as specified by the YQL service
         jsonp: "callback",
@@ -26,7 +26,7 @@
 
         // Tell YQL what we want and that we want JSON
         data: {
-          q: "select title,abstract,url from search.news where query=\"cat\"",
+          q: "select id,l,q from d where qid=\"movie\"",
           format: "json"
         },
 

@@ -14,13 +14,33 @@
   <script>
 
     $(function () {
+
+
+      $.ajax({
+
+        // La URL para la petición
+        url: "../datos/pelicula.json",
+        type: "GET",
+        dataType: "json",
+      })
+        .done(function (json) {
+          console.log("Respuesta recibida!");
+        })
+        .fail(function () {
+          console.log("Lo siento, hemos tenido un problema!");
+        })
+        .always(function (xhr, status) {
+          console.log("La petición se ha realizado");
+        });
       // Setting up a loading indicator using Ajax Events
-      $("#loading_indicator")
+      $("#indicadorCarga")
         .ajaxStart(function () {
+          alert('Empieza la llamada');
           $(this).show();
         })
         .ajaxStop(function () {
-          $(this).hide();
+          alert('Termina la llamada');
+          //$(this).hide();
         });
     });
   </script>
@@ -65,7 +85,7 @@
     </div>
   </nav>
   Ejemplos de conceptos clave de AJAX. Ver consola F12
-  <a>Enlace ejemplo</a>
+  <img id="indicadorCarga" src="../img/carga.png"/>
   <!-- Optional JavaScript -->
   <!--  Popper.js, then Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
