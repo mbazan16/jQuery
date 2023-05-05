@@ -17,12 +17,12 @@
       //Este ejemplo no funcionará  ya que la llamada es asincrona y no estará disponible inmediatamente
       var response;
 
-      $.get("foo.php", function (r) {
+      $.get("https://v2.sg.media-imdb.com/suggests/h/hello.json", function (r) {
         response = r;
       });
       console.log(response);
       //Correcta implementación
-      $.get("foo.php", function (response) {
+      $.get("https://v2.sg.media-imdb.com/suggests/h/hello.json", function (response) {
         console.log(response);
       });
     });
